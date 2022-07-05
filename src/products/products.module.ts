@@ -1,30 +1,33 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Routes, RouterModule } from "@angular/router";
+import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 // components
-import * as fromComponents from './components';
+import * as fromComponents from "./components";
 
 // containers
-import * as fromContainers from './containers';
+import * as fromContainers from "./containers";
+
+// guards
+import * as fromGuards from "./guards";
 
 // services
-import * as fromServices from './services';
+import * as fromServices from "./services";
 
 // routes
 export const ROUTES: Routes = [
   {
-    path: '',
+    path: "",
     component: fromContainers.ProductsComponent,
   },
   {
-    path: ':id',
+    path: ":id",
     component: fromContainers.ProductItemComponent,
   },
   {
-    path: 'new',
+    path: "new",
     component: fromContainers.ProductItemComponent,
   },
 ];
@@ -36,7 +39,7 @@ export const ROUTES: Routes = [
     HttpClientModule,
     RouterModule.forChild(ROUTES),
   ],
-  providers: [...fromServices.services],
+  providers: [...fromServices.services, ...fromGuards.guards],
   declarations: [...fromContainers.containers, ...fromComponents.components],
   exports: [...fromContainers.containers, ...fromComponents.components],
 })
